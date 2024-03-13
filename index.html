@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>My To-Do List</h2>
-    <input type="text" id="task" name="task" placeholder="Enter task">
-    <button type="button" onclick="addTask()">Add Task</button>
+    <div class="container">
+        <h2>My To-Do List</h2>
+        <input type="text" id="task" placeholder="Enter You task">
+        <input type="text" id="description" placeholder="Describe Your Task">
+        <button type="button" onclick="addTodo()">Add Task</button>
+        <div id="todolist">
+            <!-- list will append here -->
+        </div>
+    </div>
+        
+    <script src="script.js"></script>
 </body>
 </html>
