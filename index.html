@@ -3,19 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
     <link rel="stylesheet" href="style.css">
+    <title>To-Do List</title>
 </head>
 <body>
-    <div class="container">
-        <h2>My To-Do List</h2>
-        <a href="post.html"><button type="button"> + New Task</button></a>
-        <div id="todolist">
-            <!-- list will append here -->
-        </div>
-    </div>
-        
-    <script src="script.js"></script>
+    <section id="section-1">
+        <h1>TO-DO LIST.</h1>
+        <a href="#section-3"><button type="button">+ New Task</button></a>
+    </section>
 
+    <section id="section-2">
+        <h3>My To-Do List</h3>
+                    <h2 id="noTasksMessage">NO TASKS AT THE MOMENT</h2>
+        <ul id="taskList">
+                    <!-- Tasks will be appended here -->
+                </ul>
+    </section>
+
+    <section id="section-3">
+        <h3 class="newTask">New Task</h3>
+        <input type="text" id="taskDescription" placeholder="Enter Task Description">
+        <input type="datetime-local" id="taskDueDate">
+        <button type="submit" id="addButton">Add Task</button>
+    </section>
+    <script src="script.js"></script>
 </body>
 </html>
