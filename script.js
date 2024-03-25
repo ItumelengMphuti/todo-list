@@ -6,12 +6,68 @@ document.addEventListener('DOMContentLoaded', function() {
     const section2 = document.getElementById('section-2');
     const noTasksMessage = document.getElementById('noTasksMessage');
 
+    // Function to create a new task item
+    function createTaskItem(taskText, formattedDueDate) {
+        const li = document.createElement('li');
+
+        const taskSpan = document.createElement('span');
+        taskSpan.textContent = taskText;
+
+        const dueSpan = document.createElement('span');
+        dueSpan.textContent = `  Due: ${formattedDueDate}`;
+        dueSpan.style.display = 'block';
+
+        li.appendChild(taskSpan);
+        li.appendChild(dueSpan);
+
+    
+      // Create delete button
+        const deleteBtn = document.createElement('button');
+        deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+        deleteBtn.classList.add('delete-btn');
+        deleteBtn.onclick = function() {
+            li.remove();
+            if (taskList.childElementCount === 0) {
+                noTasksMessage.style.display = 'block';
+            }
+        };
+
+        
+       const tickBtn = document.createElement('button');
+       tickBtn.innerHTML = '<i class="fas fa-check"></i>';
+       tickBtn.classList.add('tick-btn');
+       tickBtn.onclick = function() {
+           li.style.textDecoration = 'line-through';
+           li.style.opacity = '0.5';
+           tickBtn.disabled = true;
+       };
+
+
+        const editBtn = document.createElement('button');
+        editBtn.innerHTML = '<i class="fas fa-pen"></i>';
+        editBtn.classList.add('edit-btn');
+        editBtn.onclick = function() {
+            const updatedTaskText = prompt('Enter the updated task:');
+            if (updatedTaskText) {
+                taskText = updatedTaskText;
+                li.textContent = `${taskText} - Due: ${formattedDueDate}`;
+            }
+        };
+
+
+        li.appendChild(tickBtn);
+        li.appendChild(deleteBtn);
+        li.appendChild(editBtn);
+
+        return li;
+    }
+
     addButton.addEventListener('click', function() {
         const taskText = taskInput.value.trim();
         const dueDate = new Date(taskDueDate.value); // Convert input to a Date object
 
         if (taskText !== '' && !isNaN(dueDate.getTime())) {
-            // Format the due date and time
+           
             const formattedDueDate = dueDate.toLocaleString('en-US', {
                 weekday: 'short',
                 year: 'numeric',
@@ -22,12 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 hour12: true
             });
 
-            const li = document.createElement('li');
-            li.textContent = `${taskText} - Due: ${formattedDueDate}`;
+            const li = createTaskItem(taskText, formattedDueDate);
             taskList.appendChild(li);
-
-            // Append the list item to section-2
-            section2.appendChild(li);
 
             // Scroll back up to section-2
             section2.scrollIntoView({ behavior: 'smooth' });
