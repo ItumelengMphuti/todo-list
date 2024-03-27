@@ -45,7 +45,6 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    
 }
 
 button:hover {
@@ -56,7 +55,7 @@ button:hover {
 input[type="text"], input[type="datetime-local"] {
     padding: 10px;
     margin-bottom: 10px;
-    width: 100%;
+    width: 50%;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -72,13 +71,15 @@ input[type="text"], input[type="datetime-local"] {
     border-radius: 5px;
     cursor: pointer;
 }
-/* Reset default list styles */
+#addButton:hover {
+    background-color: #dbdddc;
+}
 ul {
     padding: 0;
     margin: 0;
 }
 
-/* Style list items */
+
 li {
     list-style: none;
     text-align: center;
