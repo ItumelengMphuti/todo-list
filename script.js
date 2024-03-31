@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const section2 = document.getElementById('section-2');
     const noTasksMessage = document.getElementById('noTasksMessage');
 
-    // Function to create a new task item
     function createTaskItem(taskText, formattedDueDate) {
         const li = document.createElement('li');
 
@@ -18,10 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
         dueSpan.style.display = 'block';
 
         li.appendChild(taskSpan);
-        li.appendChild(dueSpan);
+        li.appendChild(dueSpan); 
 
-    
-      // Create delete button
         const deleteBtn = document.createElement('button');
         deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
         deleteBtn.classList.add('delete-btn');
@@ -42,15 +39,13 @@ document.addEventListener('DOMContentLoaded', function() {
            tickBtn.disabled = true;
        };
 
-
-        const editBtn = document.createElement('button');
+         const editBtn = document.createElement('button');
         editBtn.innerHTML = '<i class="fas fa-pen"></i>';
         editBtn.classList.add('edit-btn');
         editBtn.onclick = function() {
             const updatedTaskText = prompt('Enter the updated task:');
             if (updatedTaskText) {
-                taskText = updatedTaskText;
-                li.textContent = `${taskText} - Due: ${formattedDueDate}`;
+                taskSpan.textContent = updatedTaskText; // Update task text without removing icons
             }
         };
 
@@ -58,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
         li.appendChild(tickBtn);
         li.appendChild(deleteBtn);
         li.appendChild(editBtn);
-
         return li;
     }
 
@@ -67,7 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const dueDate = new Date(taskDueDate.value); // Convert input to a Date object
 
         if (taskText !== '' && !isNaN(dueDate.getTime())) {
-           
             const formattedDueDate = dueDate.toLocaleString('en-US', {
                 weekday: 'short',
                 year: 'numeric',
@@ -81,14 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const li = createTaskItem(taskText, formattedDueDate);
             taskList.appendChild(li);
 
-            // Scroll back up to section-2
             section2.scrollIntoView({ behavior: 'smooth' });
 
-            // Clear input fields after adding task
             taskInput.value = '';
             taskDueDate.value = '';
 
-            // Hide the "NO TASKS" message if there are tasks in the list
             noTasksMessage.style.display = 'none';
         }
     });
