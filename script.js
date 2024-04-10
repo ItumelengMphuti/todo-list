@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
            tickBtn.disabled = true;
        };
 
-         const editBtn = document.createElement('button');
+          const editBtn = document.createElement('button');
         editBtn.innerHTML = '<i class="fas fa-pen"></i>';
         editBtn.classList.add('edit-btn');
         editBtn.onclick = function() {
