@@ -1,10 +1,14 @@
 const express =require('express');
-
+const mongoose = require('mongoose');
 //express APP
 const app = express();
 
-//listening for requests
-app.listen(3000);
+// connect mongodb
+const dbURI = 'mongodb+srv://ItumelengM:961002M@cluster0.0g058t0.mongodb.net/Todo_list?retryWrites=true&w=majority&appName=Cluster0';
+mongoose.connect(dbURI)
+.then((result) => app.listen(3000))
+.catch((err) => console.log(err));
+
 
 app.get('/', (req, res) => {
     res.sendFile('./HTML/index.html', { root:__dirname });
@@ -18,5 +22,5 @@ app.get('/signup.html', (req, res) => {
 });
 // 404 page (always at the bottom!)
 app.use((req, res) => {
-    res.sendFile('./HTML/404.html', { root:__dirname })
+    res.sendFile('./HTML/404.html', { root:__dirname });
 });
